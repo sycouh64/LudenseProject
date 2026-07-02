@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAnimations : MonoBehaviour
 {
+    // 구현안됨
     private Rigidbody2D rb;
     private Animator anim;
 

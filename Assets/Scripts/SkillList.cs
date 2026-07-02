@@ -1,14 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.WSA;
-using static AttackingProperties;
 
 public class SkillList : MonoBehaviour
 {
+    // 스킬 기본값 지정 스크립트
 
     public class Skill
     {
-        protected string skillName = "dtq";
+        public string skillName;
         public string skillProperty;
         public string skillType;
         public float skillDamage;
@@ -22,25 +22,32 @@ public class SkillList : MonoBehaviour
             skillValue = value;
         }
 
-        protected virtual void Activate() { }
+        public virtual void Activate() { }
     }
 
-    class IgniteWeapon : Skill
-    {
-        public IgniteWeapon() : base("무기발화", "fire", "utility", 0, 5){ }
+    //class IgniteWeapon : Skill
+    //{
+    //    public IgniteWeapon() : base("무기발화", "fire", "utility", 0, 5){ }
 
-        protected override void Activate()
-        {
+    //    protected override void Activate()
+    //    {
             
-        }
-    }
+    //    }
+    //}
 
-    class FireBall : Skill
+    public class FireBall : Skill
     {
-        public FireBall() : base("파이어볼", "fire", "attack", 20, 0) { }
-        protected override void Activate()
+        private SkillExecutor executor;
+        private Vector2 direction;
+
+        public FireBall(SkillExecutor exec)
+            : base("파이어볼", "fire", "attack", 20, 0) 
         {
-            Debug.Log(777);
+            executor = exec;
+        }
+        public override void Activate()
+        {
+            executor.Execute(this, direction);
         }
     }
 }

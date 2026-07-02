@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class PlayerWallCheck : MonoBehaviour
 {
+    // 래이캐스트로 플레이어 바라보는 방향 벽 체크
+
     private Rigidbody2D rb;
     public static bool isWall;
     float wallCheckDistance = 0.85f;

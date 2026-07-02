@@ -4,6 +4,9 @@ using static PlayerAttack;
 
 public class EnemyScript : MonoBehaviour
 {
+    // 적 스크립트
+    // 데미지 및 체력 구현, 무적타이밍 구현, 애니메이션과 연결하여 사라짐 구현
+    // 추후 수정 예정(임시)
     private Animator anim;
     public bool enemyDamaged;
 
@@ -11,7 +14,7 @@ public class EnemyScript : MonoBehaviour
 
 
     public void TakeDamage(int damage)
-    {
+    {   
         if (enemyDamaged) return;
 
         if (damage != 3)

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerAttack : MonoBehaviour
 {
+    // 플레이어 기본공격인데 작동안함. 이전 코드에서 긁어온 것. 추후 수정 예정
     private Animator anim;
     public static bool isAttacking;
 

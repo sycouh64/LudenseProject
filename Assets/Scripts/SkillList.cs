@@ -41,13 +41,29 @@ public class SkillList : MonoBehaviour
         private Vector2 direction;
 
         public FireBall(SkillExecutor exec)
-            : base("파이어볼", "fire", "attack", 20, 0) 
+            : base("파이어볼", "fire", "attack", 30, 0) 
         {
             executor = exec;
         }
         public override void Activate()
         {
-            executor.Execute(this, direction);
+            executor.Execute(this);
+        }
+    }
+
+    public class RisingVine : Skill
+    {
+        private SkillExecutor executor;
+        private Vector2 direction;
+
+        public RisingVine(SkillExecutor exec)
+            : base("솟아오르는덩쿨", "plant", "attack", 20, 0)
+        {
+            executor = exec;
+        }
+        public override void Activate()
+        {
+            executor.Execute(this);
         }
     }
 }

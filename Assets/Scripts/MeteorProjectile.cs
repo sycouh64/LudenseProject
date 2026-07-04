@@ -51,8 +51,8 @@ public class MeteorProjectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            other.GetComponent<EnemyScript>()?.TakeDamage(damage);
             Destroy(gameObject);
-            // other.GetComponent<EnemyHealth>()?.TakeDamage(damage);
         }
     }
 }

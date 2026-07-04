@@ -2,6 +2,10 @@ using System.Collections;
 using UnityEngine;
 using static PlayerAttack;
 
+using System.Collections;
+using UnityEngine;
+using static PlayerAttack;
+
 public class EnemyScript : MonoBehaviour
 {
     // 적 스크립트
@@ -10,10 +14,12 @@ public class EnemyScript : MonoBehaviour
     private Animator anim;
     public bool enemyDamaged;
 
-    public int enemyHp = 3;
+    public float maxHp = 100f;
+    public float enemyHp = 100f;
+    public float contactDamage = 10f; // Enemy's offensive (attack)
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {   
         if (enemyDamaged) return;
 
@@ -27,12 +33,41 @@ public class EnemyScript : MonoBehaviour
 
         enemyHp -= damage;
         enemyDamaged = true;
+        
+        Debug.Log($"Enemy took {damage} damage. Current HP: {enemyHp}");
+
         if (enemyHp <= 0)
         {
             Destroy(gameObject);
         }
 
-        anim.SetInteger("damaged",1);
+        if (anim != null)
+            anim.SetInteger("damaged", 1);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(contactDamage);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Also check triggers in case the player/enemy use trigger colliders for contact
+        if (collision.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(contactDamage);
+            }
+        }
     }
 
     public void OnEnemyDamagedAnimationEnd()
@@ -51,5 +86,6 @@ public class EnemyScript : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         enemyDamaged = false;
+        enemyHp = maxHp;
     }
 }

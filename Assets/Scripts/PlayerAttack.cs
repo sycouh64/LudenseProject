@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public float radius;
     public LayerMask enemyLayer;
     public static int attackStack;
+    public float attackPower = 15f; // Decent player attack power (< 20)
 
     private void Awake()
     {
@@ -54,10 +55,10 @@ public class PlayerAttack : MonoBehaviour
         {
             if (attackStack <= 2)
             {
-                hit.GetComponent<EnemyScript>()?.TakeDamage(1);
+                hit.GetComponent<EnemyScript>()?.TakeDamage(attackPower);
             }
             else{
-                hit.GetComponent<EnemyScript>()?.TakeDamage(3);
+                hit.GetComponent<EnemyScript>()?.TakeDamage(Mathf.Min(20f, attackPower * 1.2f)); // Cap heavy attack at 20 as requested
             }
         }
     }

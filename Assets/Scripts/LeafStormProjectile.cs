@@ -34,6 +34,7 @@ public class LeafStormProjectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy")) // 적과 충돌 시
         {
+            other.GetComponent<EnemyScript>()?.TakeDamage(damage);
             speed = 0;
             Destroy(gameObject, 0.5f);
         }

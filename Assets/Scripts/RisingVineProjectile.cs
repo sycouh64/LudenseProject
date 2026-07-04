@@ -5,13 +5,13 @@ public class RisingVineProjectile : MonoBehaviour
     private float damage;
     private Animator anim;
 
-    [SerializeField] private float lifetime = 3f;   // 지속 시간
+    [SerializeField] private float lifetime = 2f;   // 지속 시간
     [SerializeField] private float riseTime = 0.5f; // 솟아오르는 시간
 
     void Awake()
     {
         anim = GetComponent<Animator>();
-        Destroy(gameObject, 5f); // 5초 후 자동 소멸
+        Destroy(gameObject, 2f); // 5초 후 자동 소멸
     }
 
     public void Init(float dmg)
@@ -25,7 +25,7 @@ public class RisingVineProjectile : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // other.GetComponent<EnemyHealth>()?.TakeDamage(damage);
+            other.GetComponent<EnemyScript>()?.TakeDamage(damage);
         }
     }
 }

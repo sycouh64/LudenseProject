@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "UnityMCP": {
+      "command": "C:/Users/aprrh/Desktop/ludensproject/LudenseProject/Assets/StreamingAssets/realvirtual-MCP/python/python.exe",
+      "args": [
+        "C:/Users/aprrh/Desktop/ludensproject/LudenseProject/Assets/StreamingAssets/realvirtual-MCP/unity_mcp_server.py"
+      ]
+    }
+  }
+}

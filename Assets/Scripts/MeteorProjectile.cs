@@ -34,7 +34,7 @@ public class MeteorProjectile : MonoBehaviour
         // 회전 적용 없이 방향 벡터만 저장
         direction = (targetPos - startPos).normalized;
 
-        anim.Play("MeteorFly");
+        // anim.Play("MeteorFly");
     }
 
     void Update()

@@ -1009,7 +1009,7 @@ Transform:
   m_GameObject: {fileID: 1154909430}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.89, y: 1.17, z: 0}
+  m_LocalPosition: {x: -0.03, y: 1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1248,6 +1248,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillExecutor
   fireballPrefab: {fileID: 4223970972498654481, guid: 89c440bf33da2b34093dc916192c5a15, type: 3}
   risingVinePrefab: {fileID: 1736930717566025857, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
+  icicleShotPrefab: {fileID: 1814263351373795375, guid: 0d6fd73d3a782f24a82f7fcee746ff96, type: 3}
+  leafStormPrefab: {fileID: 5273230762293075557, guid: 299683803f382b6409cdb60a42d595c2, type: 3}
+  meteorPrefab: {fileID: 3554375392284406960, guid: c3b3ebd81e2b8b140b34edee1f2b3ec7, type: 3}
 --- !u!114 &1154909445
 MonoBehaviour:
   m_ObjectHideFlags: 0

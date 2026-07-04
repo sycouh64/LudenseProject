@@ -7,6 +7,9 @@ public class InputManager : MonoBehaviour
     // 스킬 사용 입력 스크립트
     private Skill fireball;
     private Skill risingVine;
+    private Skill leafStorm;
+    private Skill meteor;
+    private Skill icicleShot;
     private SkillExecutor executor;
 
     
@@ -14,7 +17,10 @@ public class InputManager : MonoBehaviour
     {
         executor = GetComponent<SkillExecutor>();
         fireball = new FireBall(executor);
-        risingVine = new SkillList.RisingVine(executor);
+        risingVine = new RisingVine(executor);
+        leafStorm = new LeafStorm(executor);
+        meteor = new Meteor(executor);
+        icicleShot = new IcicleShot(executor);
     }
     public void OnSkill_1(InputValue value)
     {
@@ -23,5 +29,19 @@ public class InputManager : MonoBehaviour
     public void OnSkill_2(InputValue value)
     {
         risingVine.Activate();
+    }
+    public void OnSkill_3(InputValue value)
+    {
+        leafStorm.Activate();
+    }
+
+    public void OnSkill_4(InputValue value)
+    {
+        meteor.Activate();
+    }
+
+    public void OnSkill_5(InputValue value)
+    {
+        icicleShot.Activate();
     }
 }

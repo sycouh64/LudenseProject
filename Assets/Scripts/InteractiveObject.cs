@@ -26,7 +26,10 @@ public class InteractiveObject : MonoBehaviour
 
         if (distance <= interactionRadius)
         {
-            DoGreenInteraction();
+            if (isSiksik == true)
+            {
+                DoGreenInteraction();
+            }
         }
     }
 

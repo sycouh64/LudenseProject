@@ -1,32 +1,25 @@
 using UnityEngine;
 
-public class MeteorProjectile : MonoBehaviour
+public class MeteorProjectile : DisposableProjectile
 {
     [SerializeField] private float speed = 5f;
 
-    private float damage;
     private Vector3 startPos;
     private Vector3 targetPos;
     private float journeyLength;    // 전체 이동 거리
     private float distanceCovered;  // 현재까지 이동한 거리
-    private Vector2 direction; // 방향만 저장
 
     [SerializeField] private Vector3 startScale = new Vector3(0.3f, 0.3f, 1f); // 시작 크기
     [SerializeField] private Vector3 endScale = new Vector3(10f, 10f, 1f);        // 도착 크기
 
-    private Animator anim;
 
-    void Awake()
-    {
-        anim = GetComponent<Animator>();
-        Destroy(gameObject, 10f);
-    }
-
-    public void Init(Vector3 start, Vector3 target, float dmg)
+    public void Init(Vector3 start, Vector3 target, float dmg, float speed, float time)
     {
         startPos = start;
         targetPos = target;
         damage = dmg;
+        projectileSpeed = speed;
+        skillDestroyTime = time;
 
         journeyLength = Vector3.Distance(startPos, targetPos);
         transform.localScale = startScale;
@@ -46,13 +39,9 @@ public class MeteorProjectile : MonoBehaviour
         transform.localScale = Vector3.Lerp(startScale, endScale, progress);
     }
 
-
-    void OnTriggerEnter2D(Collider2D other)
+    protected override void OnHit()
     {
-        if (other.CompareTag("Enemy"))
-        {
-            other.GetComponent<EnemyScript>()?.TakeDamage(damage);
-            Destroy(gameObject);
-        }
+        // animator.Play("LeafHit");
     }
+
 }

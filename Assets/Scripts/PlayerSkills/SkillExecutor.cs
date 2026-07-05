@@ -20,29 +20,29 @@ public class SkillExecutor : MonoBehaviour
             case "파이어볼":
                 if (greenEnergy >= 1)
                 {
-                    SpawnFireball(skill.skillDamage);
+                    SpawnFireball(skill.skillDamage, skill.skillSpeed, skill.skillTime);
                     greenEnergy -= 1;
                 }
                 break;
             case "메테오":
-                SpawnMeteor(skill.skillDamage);
+                SpawnMeteor(skill.skillDamage, skill.skillSpeed, skill.skillTime);
                 break;
             case "무기발화":
                 // ActivateIgniteWeapon();
                 break;
             case "고드름발사":
-                StartCoroutine(SpawnIcicleShot(skill.skillDamage));
+                StartCoroutine(SpawnIcicleShot(skill.skillDamage, skill.skillSpeed, skill.skillTime));
                 break;
             case "솟아오르는덩쿨":
-                SpawnRisingVine(skill.skillDamage);
+                SpawnRisingVine(skill.skillDamage, skill.skillSpeed, skill.skillTime);
                 break;
             case "리프스톰":
-                StartCoroutine(SpawnLeafStorm(skill.skillDamage));
+                StartCoroutine(SpawnLeafStorm(skill.skillDamage, skill.skillSpeed, skill.skillTime));
                 break ;
         }
     }
 
-    void SpawnFireball(float damage)
+    void SpawnFireball(float damage, float speed, float time)
     {
         // 마우스 위치를 월드 좌표로 변환
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,10 +53,10 @@ public class SkillExecutor : MonoBehaviour
 
         // 파이어볼 생성
         var obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-        obj.GetComponent<FireballProjectile>().Init(direction, damage); // 파이어볼 스크립트의 Init 호출
+        obj.GetComponent<FireballProjectile>().Init(direction, damage, speed, time); // 파이어볼 스크립트의 Init 호출
     }
 
-    void SpawnMeteor(float damage) 
+    void SpawnMeteor(float damage, float speed, float time) 
     {
         // 마우스 위치 (목표 지점)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -67,9 +67,9 @@ public class SkillExecutor : MonoBehaviour
         Vector3 startPos = mousePos + startOffset;
 
         var obj = Instantiate(meteorPrefab, startPos, Quaternion.identity);
-        obj.GetComponent<MeteorProjectile>().Init(startPos, mousePos, damage);
+        obj.GetComponent<MeteorProjectile>().Init(startPos, mousePos, damage, speed, time);
     }
-    void SpawnRisingVine(float damage)
+    void SpawnRisingVine(float damage, float speed, float time)
     {
         // 마우스 X좌표를 월드 좌표로 변환
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -87,11 +87,11 @@ public class SkillExecutor : MonoBehaviour
         {
             Vector3 spawnPos = new Vector3(mousePos.x, hit.point.y, 0);
             var obj = Instantiate(risingVinePrefab, spawnPos, Quaternion.identity);
-            obj.GetComponent<RisingVineProjectile>().Init(damage);
+            obj.GetComponent<RisingVineProjectile>().Init(damage, speed, time);
         }
     }
 
-    private IEnumerator SpawnLeafStorm(float damage)
+    private IEnumerator SpawnLeafStorm(float damage, float speed, float time)
     {
         // 마우스 방향 계산 (파이어볼과 동일)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -105,13 +105,13 @@ public class SkillExecutor : MonoBehaviour
             Vector3 spawnPos = transform.position + new Vector3(0, yOffset, 0);
 
             var obj = Instantiate(leafStormPrefab, spawnPos, Quaternion.identity);
-            obj.GetComponent<LeafStormProjectile>().Init(baseDirection, damage);
+            obj.GetComponent<LeafStormProjectile>().Init(baseDirection, damage, speed, time);
 
             // 다음 잎까지 대기
             yield return new WaitForSeconds(leafInterval);
         }
     }
-    private IEnumerator SpawnIcicleShot(float damage)
+    private IEnumerator SpawnIcicleShot(float damage, float speed, float time)
     {
         // 마우스 방향 계산 (파이어볼과 동일)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -125,7 +125,7 @@ public class SkillExecutor : MonoBehaviour
             Vector3 spawnPos = transform.position + new Vector3(0, yOffset, 0);
 
             var obj = Instantiate(icicleShotPrefab, spawnPos, Quaternion.identity);
-            obj.GetComponent<IcicleShotProjectile>().Init(baseDirection, damage);
+            obj.GetComponent<IcicleShotProjectile>().Init(baseDirection, damage, speed, time);
 
             // 다음 잎까지 대기
             yield return new WaitForSeconds(leafInterval);

@@ -13,13 +13,17 @@ public class SkillList : MonoBehaviour
         public string skillType;
         public float skillDamage;
         public float skillValue;
-        public Skill(string name, string property, string type, float damage, float value)
+        public float skillSpeed;
+        public float skillTime;
+        public Skill(string name, string property, string type, float damage, float value, float speed, float time)
         {
             skillName = name;
             skillProperty = property;
             skillType = type;
             skillDamage = damage;
             skillValue = value;
+            skillSpeed = speed;
+            skillTime = time;
         }
 
         public virtual void Activate() { }
@@ -31,7 +35,7 @@ public class SkillList : MonoBehaviour
         private SkillExecutor executor;
 
         public FireBall(SkillExecutor exec)
-            : base("파이어볼", "fire", "attack", 15, 0) 
+            : base("파이어볼", "fire", "attack", 15, 0, 10, 5) 
         {
             executor = exec;
         }
@@ -46,7 +50,7 @@ public class SkillList : MonoBehaviour
         private SkillExecutor executor;
 
         public Meteor(SkillExecutor exec)
-            : base("메테오", "fire", "attack", 20, 0)
+            : base("메테오", "fire", "attack", 50, 0, 10, 10)
         {
             executor = exec;
         }
@@ -63,7 +67,7 @@ public class SkillList : MonoBehaviour
         public SkillList.Skill fireball; // placeholder to keep some lines if needed, but not needed
 
         public IcicleShot(SkillExecutor exec)
-            : base("고드름발사", "water", "attack", 12, 0)
+            : base("고드름발사", "water", "attack", 12, 0, 30, 5)
         {
             executor = exec;
         }
@@ -77,7 +81,7 @@ public class SkillList : MonoBehaviour
         private SkillExecutor executor;
 
         public RisingVine(SkillExecutor exec)
-            : base("솟아오르는덩쿨", "plant", "CC", 12, 0)
+            : base("솟아오르는덩쿨", "plant", "CC", 10, 0, 30, 5)
         {
             executor = exec;
         }
@@ -92,7 +96,7 @@ public class SkillList : MonoBehaviour
         private Vector2 direction;
 
         public LeafStorm(SkillExecutor exec)
-            : base("리프스톰", "plant", "attack", 12, 0)
+            : base("리프스톰", "plant", "attack", 10, 0, 20, 5)
         {
             executor = exec;
         }

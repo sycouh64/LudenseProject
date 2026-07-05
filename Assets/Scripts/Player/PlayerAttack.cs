@@ -49,18 +49,18 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackHit()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, radius, enemyLayer);
+        //Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, radius, enemyLayer);
 
-        foreach (Collider2D hit in hits)
-        {
-            if (attackStack <= 2)
-            {
-                hit.GetComponent<EnemyScript>()?.TakeDamage(attackPower);
-            }
-            else{
-                hit.GetComponent<EnemyScript>()?.TakeDamage(Mathf.Min(20f, attackPower * 1.2f)); // Cap heavy attack at 20 as requested
-            }
-        }
+        //foreach (Collider2D hit in hits)
+        //{
+        //    if (attackStack <= 2)
+        //    {
+        //        hit.GetComponent<EnemyScript>()?.TakeDamage(attackPower);
+        //    }
+        //    else{
+        //        hit.GetComponent<EnemyScript>()?.TakeDamage(Mathf.Min(20f, attackPower * 1.2f)); // Cap heavy attack at 20 as requested
+        //    }
+        //}
     }
     
 }

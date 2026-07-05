@@ -35,7 +35,6 @@ public class InteractiveObject : MonoBehaviour
 
     public void DoGreenInteraction() // 에너지 획득
     {
-        Debug.Log(1);
         greenEnergy += 10;
         if (isSiksik == false) return;
         isSiksik = false;

@@ -35,7 +35,7 @@ public class InteractiveObject : MonoBehaviour
 
     public void DoGreenInteraction() // 에너지 획득
     {
-        greenEnergy += 10;
+        SkillEnergyManager_Instance.greenEnergy += 10;
         if (isSiksik == false) return;
         isSiksik = false;
         anim.SetInteger("siksik", 0);

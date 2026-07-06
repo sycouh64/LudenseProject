@@ -1280,6 +1280,11 @@ GameObject:
   - component: {fileID: 1154909444}
   - component: {fileID: 1154909448}
   - component: {fileID: 1154909447}
+  - component: {fileID: 1154909449}
+  - component: {fileID: 1154909452}
+  - component: {fileID: 1154909451}
+  - component: {fileID: 1154909450}
+  - component: {fileID: 1154909453}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1598,6 +1603,68 @@ MonoBehaviour:
   maxHP: 100
   currentHP: 0
   defense: 0
+--- !u!114 &1154909449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154909430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd13287d2bfb144595231eaa59f59ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnManager
+  enemy_1_Prefab: {fileID: 8043021420009559665, guid: f17af775317ad97439f37343fd2b6bcc, type: 3}
+--- !u!114 &1154909450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154909430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85ef85d8192e16748b25d9dce3fbc5aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSlotAllocater
+--- !u!114 &1154909451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154909430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21065e0411f12ca43ab4d60849fb7399, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillArbiter
+--- !u!114 &1154909452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154909430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72179aa3ef9fc2d4fa695f28657d8b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerElementManager
+  playerCurrentElement: 0
+--- !u!114 &1154909453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154909430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0107069c37f339d498048c41f2998647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillEnergyManager
 --- !u!1 &1549122339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1972,7 @@ GameObject:
   - component: {fileID: 2029133834}
   - component: {fileID: 2029133833}
   - component: {fileID: 2029133832}
+  - component: {fileID: 2029133836}
   m_Layer: 0
   m_Name: EnemyGameObject
   m_TagString: Untagged
@@ -1964,6 +2032,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029133836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029133831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72179aa3ef9fc2d4fa695f28657d8b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerElementManager
+  playerCurrentElement: 0
 --- !u!1001 &5358737871971911552
 PrefabInstance:
   m_ObjectHideFlags: 0

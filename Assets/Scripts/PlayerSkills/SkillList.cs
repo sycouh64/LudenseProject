@@ -1,6 +1,10 @@
+using JetBrains.Annotations;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.WSA;
+using static SkillExecutor;
+using static SkillList;
 
 public class SkillList : MonoBehaviour
 {
@@ -9,100 +13,53 @@ public class SkillList : MonoBehaviour
     public class Skill
     {
         public string skillName;
-        public string skillProperty;
+        public string skillElement;
         public string skillType;
         public float skillDamage;
         public float skillValue;
         public float skillSpeed;
         public float skillTime;
-        public Skill(string name, string property, string type, float damage, float value, float speed, float time)
+        public Skill(string name, string element, string type, float damage, float value, float speed, float time)
         {
             skillName = name;
-            skillProperty = property;
+            skillElement = element;
             skillType = type;
             skillDamage = damage;
             skillValue = value;
             skillSpeed = speed;
             skillTime = time;
         }
-
-        public virtual void Activate() { }
     }
 
+    public static List<Skill> skillList = new List<Skill>()
+    {
+        new FireBall(),
+        new Meteor(),
+        new RisingVine(),
+        new LeafStorm(),
+        new IcicleShot(),
+    };
 
     public class FireBall : Skill
     {
-        private SkillExecutor executor;
-
-        public FireBall(SkillExecutor exec)
-            : base("파이어볼", "fire", "attack", 15, 0, 10, 5) 
-        {
-            executor = exec;
-        }
-        public override void Activate()
-        {
-            executor.Execute(this);
-        }
+        public FireBall() : base("파이어볼", "red", "attack", 15, 0, 10, 5) { }
     }
 
     public class Meteor : Skill
     {
-        private SkillExecutor executor;
-
-        public Meteor(SkillExecutor exec)
-            : base("메테오", "fire", "attack", 50, 0, 10, 10)
-        {
-            executor = exec;
-        }
-        public override void Activate()
-        {
-            executor.Execute(this);
-        }
+        public Meteor() : base("메테오", "red", "attack", 50, 0, 10, 10) { }
     }
 
     public class IcicleShot : Skill
     {
-        private SkillExecutor executor;
-
-        public SkillList.Skill fireball; // placeholder to keep some lines if needed, but not needed
-
-        public IcicleShot(SkillExecutor exec)
-            : base("고드름발사", "water", "attack", 12, 0, 30, 5)
-        {
-            executor = exec;
-        }
-        public override void Activate()
-        {
-            executor.Execute(this);
-        }
+        public IcicleShot() : base("고드름발사", "blue", "attack", 12, 0, 30, 5) { }
     }
     public class RisingVine : Skill
     {
-        private SkillExecutor executor;
-
-        public RisingVine(SkillExecutor exec)
-            : base("솟아오르는덩쿨", "plant", "CC", 10, 0, 30, 5)
-        {
-            executor = exec;
-        }
-        public override void Activate()
-        {
-            executor.Execute(this);
-        }
+        public RisingVine() : base("솟아오르는덩쿨", "green", "CC", 10, 0, 30, 5) { }
     }
     public class LeafStorm : Skill
     {
-        private SkillExecutor executor;
-        private Vector2 direction;
-
-        public LeafStorm(SkillExecutor exec)
-            : base("리프스톰", "plant", "attack", 10, 0, 20, 5)
-        {
-            executor = exec;
-        }
-        public override void Activate()
-        {
-            executor.Execute(this);
-        }
+        public LeafStorm() : base("리프스톰", "green", "attack", 10, 0, 20, 5) { }
     }
 }

@@ -12,10 +12,8 @@ public class EntitySpawnController : MonoBehaviour
         enemy_1 = new Enemy_1(enemySpawnManager);
 
         enemy_1.Activate(new Vector2(1f, 0f));
-        if (enemy_1 != null)
-        {
-            Debug.Log(1557);
-        }
+        enemy_1.Activate(new Vector2(1f, 0f));
+        enemy_1.Activate(new Vector2(1f, 0f));
     }
 
 }

@@ -79,45 +79,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill_5",
-                    "type": "Button",
-                    "id": "1d9a9126-f93d-45fe-89d1-25d373e3e725",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Skill_6",
-                    "type": "Button",
-                    "id": "3c4a4e21-7a63-4b52-8018-673b2b4b4148",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Skill_7",
-                    "type": "Button",
-                    "id": "a28eb057-9323-4a9d-b620-26a5a4daec1e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Skill_8",
-                    "type": "Button",
-                    "id": "5144132c-d61a-4c3f-801c-a7950d3ae264",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Enemy",
                     "type": "Button",
                     "id": "0e1893ea-f6bd-45bb-9206-cc79f1b0d563",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RedSkill",
+                    "type": "Button",
+                    "id": "da246607-4659-413d-b70d-d488225b2710",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "GreenSkill",
+                    "type": "Button",
+                    "id": "f2811a20-aca2-4665-91e6-3527fda93ade",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "BlueSkill",
+                    "type": "Button",
+                    "id": "f9c7d346-f768-4f82-8ab0-8d93f6a0e9b0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -150,7 +141,7 @@
                 {
                     "name": "Up",
                     "id": "4ad8a933-df90-467a-81c3-4ab46ea3fd58",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -161,7 +152,7 @@
                 {
                     "name": "Down",
                     "id": "711c8ab8-fb9e-44a4-becf-9b5ba551df02",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -172,7 +163,7 @@
                 {
                     "name": "Left",
                     "id": "a42f72f7-08ae-4d80-9e56-93c1e5ac8143",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -183,7 +174,7 @@
                 {
                     "name": "Right",
                     "id": "59b20a12-73c3-4c42-b049-bb68be1a3381",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -227,7 +218,7 @@
                 {
                     "name": "",
                     "id": "f95d20db-5163-4e6d-b932-8e870e096112",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -249,7 +240,7 @@
                 {
                     "name": "",
                     "id": "7bf1a17a-c0c8-46ee-8879-88c26a09bc70",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -260,7 +251,7 @@
                 {
                     "name": "",
                     "id": "55ce7b12-ff14-47a6-955a-91fe5711e030",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -271,7 +262,7 @@
                 {
                     "name": "",
                     "id": "333ed0f6-46f6-44bf-b6d7-20daac54e25c",
-                    "path": "<Keyboard>/4",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -281,56 +272,45 @@
                 },
                 {
                     "name": "",
-                    "id": "752c91dc-6394-4055-bc45-63a4cdb35c7c",
-                    "path": "<Keyboard>/5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skill_5",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3e954ce2-f52b-4b6b-808b-3098991a9cf9",
-                    "path": "<Keyboard>/6",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skill_6",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e85b3891-74d8-4bc7-9e01-583cfade208d",
-                    "path": "<Keyboard>/7",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skill_7",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6f0643b1-7948-4cde-92a9-395738f57c3a",
-                    "path": "<Keyboard>/8",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skill_8",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5d35aeb7-eeea-48f2-ae66-b80d717d3e69",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Enemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "49da7ce4-b5e2-4585-8ff5-3ca7a8617b0c",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RedSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fcbedf86-a7f0-4865-a9ae-85f5c2e391bb",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GreenSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2583ca03-da6c-42af-8014-0e1392a98a69",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "BlueSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

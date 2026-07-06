@@ -1,47 +1,54 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static SkillList;
+using static EnemyList;
+using static SkillArbiter;
+using static PlayerElementManager;
+using NUnit.Framework.Constraints;
 
 public class InputManager : MonoBehaviour
 {
     // 스킬 사용 입력 스크립트
-    private Skill fireball;
-    private Skill risingVine;
-    private Skill leafStorm;
-    private Skill meteor;
-    private Skill icicleShot;
-    private SkillExecutor executor;
 
+    private Enemy enemy_1;
+    private EnemySpawnManager spawnManager;
+
+    
     
     void Start()
     {
-        executor = GetComponent<SkillExecutor>();
-        fireball = new FireBall(executor);
-        risingVine = new RisingVine(executor);
-        leafStorm = new LeafStorm(executor);
-        meteor = new Meteor(executor);
-        icicleShot = new IcicleShot(executor);
+        spawnManager = GetComponent<EnemySpawnManager>();
+        enemy_1 = new Enemy_1(spawnManager);
     }
     public void OnSkill_1(InputValue value)
     {
-        fireball.Activate();
+        Debug.Log("useSkill1");
+        SkillArbiter_Instance.SkillDecider(0);
     }
     public void OnSkill_2(InputValue value)
     {
-        risingVine.Activate();
+        SkillArbiter_Instance.SkillDecider(1);
     }
     public void OnSkill_3(InputValue value)
     {
-        leafStorm.Activate();
+        SkillArbiter_Instance.SkillDecider(2);
     }
 
-    public void OnSkill_4(InputValue value)
+    public void OnEnemy(InputValue value)
     {
-        meteor.Activate();
+        enemy_1.Activate(new Vector2(1f, 0f));
     }
 
-    public void OnSkill_5(InputValue value)
+    public void OnRedSkill(InputValue value)
     {
-        icicleShot.Activate();
+        PlayerElementManager_Instance.ElementChange(1);
+    }
+    public void OnGreenSkill(InputValue value)
+    {
+        PlayerElementManager_Instance.ElementChange(2);
+    }
+    public void OnBlueSkill(InputValue value)
+    {
+        PlayerElementManager_Instance.ElementChange(3);
     }
 }

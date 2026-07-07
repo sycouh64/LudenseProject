@@ -606,63 +606,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486039117}
   m_CullTransparentMesh: 1
---- !u!1001 &566254353
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1736930717566025857, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_Name
-      value: RisingVine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.0317605
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.81426364
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3224080632195569152, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
 --- !u!1 &718237962
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,6 +1229,7 @@ GameObject:
   - component: {fileID: 1154909450}
   - component: {fileID: 1154909453}
   - component: {fileID: 1154909454}
+  - component: {fileID: 1154909455}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1546,6 +1490,7 @@ MonoBehaviour:
   risingVinePrefab: {fileID: 1736930717566025857, guid: dbaa1e0b0d1b3c44cbee76c6c6fdac60, type: 3}
   icicleShotPrefab: {fileID: 1814263351373795375, guid: 0d6fd73d3a782f24a82f7fcee746ff96, type: 3}
   leafStormPrefab: {fileID: 5273230762293075557, guid: 299683803f382b6409cdb60a42d595c2, type: 3}
+  elementWalkerSkill: {fileID: 1154909455}
   meteorPrefab: {fileID: 3554375392284406960, guid: c3b3ebd81e2b8b140b34edee1f2b3ec7, type: 3}
 --- !u!114 &1154909445
 MonoBehaviour:
@@ -1682,6 +1627,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   baseAttack: 10
+--- !u!114 &1154909455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154909430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa2e3fa253171fc4480572589bf52c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElementWalkerSkill
+  walkerSpeed: 0
+  damage: 0
+  skillElement: 0
+  skillDestroyTime: 0
 --- !u!1 &1549122339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,7 +2176,6 @@ SceneRoots:
   - {fileID: 911353904}
   - {fileID: 752151395}
   - {fileID: 5358737871971911552}
-  - {fileID: 566254353}
   - {fileID: 77034717}
   - {fileID: 911029170}
   - {fileID: 2029133835}

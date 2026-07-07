@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class StatModifier
 {
-    public float Value;
-    public ModifierType Type;
-    public float Duration;
-    public string Source;
+    public float value;
+    public ModifierType type;
+    public float duration;
+    public string source;
     public SkillElement Element;  // 어떤 속성에 적용되는지
 
-    public StatModifier(float value, ModifierType type, float duration, string source, SkillElement element = SkillElement.All)
+    public StatModifier(float value_, ModifierType type_, float duration_, string source_, SkillElement element_ = SkillElement.All)
     {
-        Value = value;
-        Type = type;
-        Duration = duration;
-        Source = source;
-        Element = element;
+        value = value_;
+        type = type_;
+        duration = duration_;
+        source = source_;
+        Element = element_;
     }
 }
 

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using static SkillList;
 public class SkillEnergyManager : MonoBehaviour
 {
     // 스킬 에너지 획득 스크립트
@@ -50,7 +50,7 @@ public class SkillEnergyManager : MonoBehaviour
     [SerializeField] public float greenEnergy;
     [SerializeField] public float blueEnergy;
 
-    public void CalculateSkillEnergy(SkillList.Skill skill)
+    public void CosumeSkillEnergy(Skill skill)
     {
         switch (skill.SkillElement) 
         {

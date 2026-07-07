@@ -22,7 +22,6 @@ public class InputManager : MonoBehaviour
     }
     public void OnSkill_1(InputValue value)
     {
-        Debug.Log("useSkill1");
         SkillArbiter_Instance.SkillDecider(0);
     }
     public void OnSkill_2(InputValue value)

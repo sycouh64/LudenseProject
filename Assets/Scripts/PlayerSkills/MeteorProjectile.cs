@@ -16,13 +16,13 @@ public class MeteorProjectile : DisposableProjectile
 
     public override void Init(Vector2 dir, Skill skill, float finalDmg)
     {
+        finalDamage = finalDmg;
         // 마우스 위치 (목표 지점)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         
         startPos = dir;
         targetPos = mousePos;
-        damage = skill.skillDamage;
         projectileSpeed = skill.skillSpeed;
         skillDestroyTime = skill.skillTime;
 

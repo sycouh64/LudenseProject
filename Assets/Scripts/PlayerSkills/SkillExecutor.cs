@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using static SkillEnergyManager;
 using static SkillList;
+using static PlayerStats;
 using System;
 
 public class SkillExecutor : MonoBehaviour
@@ -45,16 +46,15 @@ public class SkillExecutor : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        ElementWalkerSkill elementWalkerSkill = GetComponent<ElementWalkerSkill>();
     }
-    // 스킬 실행 스크립트
-    PlayerStats playerStats = new PlayerStats();
 
     [SerializeField] GameObject fireballPrefab; // 프리팹 연결
     [SerializeField] GameObject risingVinePrefab;
     [SerializeField] GameObject icicleShotPrefab;
     [SerializeField] GameObject leafStormPrefab;
-
-    ElementWalkerSkill elementWalkerSkill = new ElementWalkerSkill();
+    [SerializeField] ElementWalkerSkill elementWalkerSkill;
 
     private int leafCount = 3; // 잎 개수
     private float leafInterval = 0.1f; // 잎 간의 시간 텀 (초)
@@ -81,7 +81,16 @@ public class SkillExecutor : MonoBehaviour
             case "리프스톰":
                 StartCoroutine(SpawnLeafStorm(skill));
                 break;
+            case "불의걸음":
+                Debug.Log("불의걸음사용!!!!!!");
+                FireWalker(skill);
+                break;
+            case "자연의걸음":
+                Debug.Log("자연의걸음사용!!!!!!");
+                NatureWalker(skill);
+                break;
             case "차가운걸음":
+                Debug.Log("차가운걸음사용!!!!!!");
                 FrozenWalker(skill);
                 break;
         }
@@ -89,14 +98,14 @@ public class SkillExecutor : MonoBehaviour
 
     void SpawnFireball(Skill skill)
     {
-        float finalDamage = playerStats.CalculateDamage(skill);
+        float finalDamage = PlayerStats_Instance.CalculateDamage(skill);
         // 마우스 위치를 월드 좌표로 변환
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
         // 캐릭터 → 마우스 방향 벡터 계산
         Vector2 direction = (mousePos - transform.position).normalized;
-
+        Debug.Log(finalDamage);
         // 파이어볼 생성
         var obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         obj.GetComponent<FireballProjectile>().Init(direction, skill, finalDamage); // 파이어볼 스크립트의 Init 호출
@@ -104,7 +113,7 @@ public class SkillExecutor : MonoBehaviour
 
     void SpawnMeteor(Skill skill) 
     {
-        float finalDamage = playerStats.CalculateDamage(skill);
+        float finalDamage = PlayerStats_Instance.CalculateDamage(skill);
         // 마우스 위치 (목표 지점)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -144,7 +153,8 @@ public class SkillExecutor : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         Vector2 baseDirection = (mousePos - transform.position).normalized;
-        float finalDamage = playerStats.CalculateDamage(skill);
+        float finalDamage = PlayerStats_Instance.CalculateDamage(skill);
+        Debug.Log(finalDamage);
         for (int i = 0; i < leafCount; i++)
         {
             float yOffset = 0;
@@ -159,7 +169,7 @@ public class SkillExecutor : MonoBehaviour
     }
     private IEnumerator SpawnIcicleShot(Skill skill)
     {
-        float finalDamage = playerStats.CalculateDamage(skill);
+        float finalDamage = PlayerStats_Instance.CalculateDamage(skill);
         // 마우스 방향 계산 (파이어볼과 동일)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -178,7 +188,15 @@ public class SkillExecutor : MonoBehaviour
             yield return new WaitForSeconds(leafInterval);
         }
     }
-
+    void FireWalker(Skill skill)
+    {
+        Debug.Log("불불");
+        elementWalkerSkill.Init(skill);
+    }
+    void NatureWalker(Skill skill)
+    {
+        elementWalkerSkill.Init(skill);
+    }
     void FrozenWalker(Skill skill)
     {
         elementWalkerSkill.Init(skill);

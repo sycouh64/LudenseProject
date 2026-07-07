@@ -61,7 +61,6 @@ public class SkillArbiter : MonoBehaviour
 
     public void SkillCast(Skill skill)
     {
-        Debug.Log("test");
         if (SkillCostCaculater(skill) == false) return;
         SkillExecutor_Instance.Execute(skill);
     }
@@ -70,7 +69,6 @@ public class SkillArbiter : MonoBehaviour
         switch (PlayerElementManager_Instance.playerCurrentElement)
         {
             case PlayerElement.Red:
-                Debug.Log(redSkillSlot[num]);
                 SkillCast(redSkillSlot[num]);
                 break;
             case PlayerElement.Green:

@@ -8,9 +8,8 @@ public class LeafStormProjectile : DisposableProjectile
 
     public override void Init(Vector2 dir, Skill skill, float finalDmg) // SkillExecutor 에서 실행함
     {
-        finalDmg = finalDamage;
+        finalDamage = finalDmg;
         direction = dir.normalized; // 벡터 정규화
-        damage = skill.skillDamage;
         projectileSpeed = skill.skillSpeed;
         skillDestroyTime = skill.skillTime;
         // 방향 벡터를 각도로 변환해서 오브젝트 회전

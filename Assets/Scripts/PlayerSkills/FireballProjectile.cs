@@ -6,9 +6,9 @@ public class FireballProjectile : DisposableProjectile
     
     public override void Init(Vector2 dir, Skill skill, float finalDmg)
     {
-        finalDmg = finalDamage;
+        // Debug.Log(finalDmg);
+        finalDamage = finalDmg;
         direction = dir.normalized;
-        damage = skill.skillDamage;
         projectileSpeed = skill.skillSpeed;
         skillDestroyTime = skill.skillTime;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

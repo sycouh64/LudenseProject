@@ -69,6 +69,7 @@ public class PlayerElementManager : MonoBehaviour
                 if (SkillEnergyManager_Instance.greenEnergy > 0) playerCurrentElement = PlayerElement.Green;
                 break;  
             case 3:
+                Debug.Log("case3");
                 if (SkillEnergyManager_Instance.blueEnergy > 0) playerCurrentElement = PlayerElement.Blue;
                 break;
             default:

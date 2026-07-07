@@ -4,7 +4,6 @@ using static SkillList;
 public abstract class DisposableProjectile : MonoBehaviour
 {
     [SerializeField] protected float projectileSpeed; // 값 받아오기
-    [SerializeField] protected float damage;
     [SerializeField] protected Vector2 direction;
     [SerializeField] protected Animator anim;
     [SerializeField] protected float skillDestroyTime;

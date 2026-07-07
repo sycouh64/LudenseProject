@@ -53,6 +53,9 @@ public class SkillList : MonoBehaviour
         new RisingVine(),
         new LeafStorm(),
         new IcicleShot(),
+        new FireWallker(),
+        new NatureWalker(),
+        new FrozenWalker(),
     };
 
     public class FireBall : Skill
@@ -79,16 +82,16 @@ public class SkillList : MonoBehaviour
     }
     public class FireWallker : Skill
     {
-        public FireWallker() : base("불의걸음", SkillElement.Red, SkillType.Utility, 100, 0, 20, 5) { }
+        public FireWallker() : base("불의걸음", SkillElement.Red, SkillType.Utility, 100, 1, 20, 5) { }
     }
     public class NatureWalker : Skill
         {
-            public NatureWalker() : base("자연의걸음", SkillElement.Green, SkillType.Utility, 100, 0, 20, 5) { }
+            public NatureWalker() : base("자연의걸음", SkillElement.Green, SkillType.Utility, 100, 1, 20, 5) { }
         }
 
     public class FrozenWalker : Skill
     {
-        public FrozenWalker() : base("차가운걸음", SkillElement.Green, SkillType.Utility, 100, 0, 20, 5) { }
+        public FrozenWalker() : base("차가운걸음", SkillElement.Blue, SkillType.Utility, 100, 1, 20, 5) { }
     }
     
 }

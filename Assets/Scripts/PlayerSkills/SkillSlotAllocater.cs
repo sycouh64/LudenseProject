@@ -46,14 +46,18 @@ public class SkillSlotAllocater : MonoBehaviour
             Destroy(gameObject);
         }
         
+        // 스킬 슬롯 스킬 할당 코드
         //redSkill
         redSkillSlot[0] = skillList[0];
         redSkillSlot[1] = skillList[1];
+        redSkillSlot[2] = skillList[5];
         //greenSkill
         greenSkillSlot[0] = skillList[2];
         greenSkillSlot[1] = skillList[3];
+        greenSkillSlot[2] = skillList[6];
         //blueSkill
         blueSkillSlot[0] = skillList[4];
+        blueSkillSlot[1] = skillList[7];
     }
 
     public static Skill[] redSkillSlot = new Skill[3];

@@ -1,4 +1,5 @@
 using UnityEngine;
+using static SkillList;
 
 public class MeteorProjectile : DisposableProjectile
 {
@@ -13,13 +14,17 @@ public class MeteorProjectile : DisposableProjectile
     [SerializeField] private Vector3 endScale = new Vector3(10f, 10f, 1f);        // 도착 크기
 
 
-    public void Init(Vector3 start, Vector3 target, float dmg, float speed, float time)
+    public override void Init(Vector2 dir, Skill skill, float finalDmg)
     {
-        startPos = start;
-        targetPos = target;
-        damage = dmg;
-        projectileSpeed = speed;
-        skillDestroyTime = time;
+        // 마우스 위치 (목표 지점)
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+        
+        startPos = dir;
+        targetPos = mousePos;
+        damage = skill.skillDamage;
+        projectileSpeed = skill.skillSpeed;
+        skillDestroyTime = skill.skillTime;
 
         journeyLength = Vector3.Distance(startPos, targetPos);
         transform.localScale = startScale;

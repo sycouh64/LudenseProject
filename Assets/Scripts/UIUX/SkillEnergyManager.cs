@@ -52,15 +52,15 @@ public class SkillEnergyManager : MonoBehaviour
 
     public void CalculateSkillEnergy(SkillList.Skill skill)
     {
-        switch (skill.skillElement) 
+        switch (skill.SkillElement) 
         {
-            case "red":
+            case SkillElement.Red:
                 redEnergy -= skill.skillValue;
                 break;
-            case "green":
+            case SkillElement.Green:
                 greenEnergy -= skill.skillValue;
                 break;
-            case "blue":
+            case SkillElement.Blue:
                 blueEnergy -= skill.skillValue;
                 break;
         }

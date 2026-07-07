@@ -47,12 +47,14 @@ public class SkillExecutor : MonoBehaviour
         }
     }
     // 스킬 실행 스크립트
+    PlayerStats playerStats = new PlayerStats();
 
     [SerializeField] GameObject fireballPrefab; // 프리팹 연결
     [SerializeField] GameObject risingVinePrefab;
     [SerializeField] GameObject icicleShotPrefab;
     [SerializeField] GameObject leafStormPrefab;
-    [SerializeField] GameObject frozenWalkerPrefab;
+
+    ElementWalkerSkill elementWalkerSkill = new ElementWalkerSkill();
 
     private int leafCount = 3; // 잎 개수
     private float leafInterval = 0.1f; // 잎 간의 시간 텀 (초)
@@ -78,15 +80,16 @@ public class SkillExecutor : MonoBehaviour
                 break;
             case "리프스톰":
                 StartCoroutine(SpawnLeafStorm(skill));
-                break ;
+                break;
             case "차가운걸음":
-                // StartCoroutine(FrozenWalker(skill));
+                FrozenWalker(skill);
                 break;
         }
     }
 
     void SpawnFireball(Skill skill)
     {
+        float finalDamage = playerStats.CalculateDamage(skill);
         // 마우스 위치를 월드 좌표로 변환
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -96,11 +99,12 @@ public class SkillExecutor : MonoBehaviour
 
         // 파이어볼 생성
         var obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-        obj.GetComponent<FireballProjectile>().Init(direction, skill.skillDamage, skill.skillSpeed, skill.skillTime); // 파이어볼 스크립트의 Init 호출
+        obj.GetComponent<FireballProjectile>().Init(direction, skill, finalDamage); // 파이어볼 스크립트의 Init 호출
     }
 
     void SpawnMeteor(Skill skill) 
     {
+        float finalDamage = playerStats.CalculateDamage(skill);
         // 마우스 위치 (목표 지점)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -110,7 +114,7 @@ public class SkillExecutor : MonoBehaviour
         Vector3 startPos = mousePos + startOffset;
 
         var obj = Instantiate(meteorPrefab, startPos, Quaternion.identity);
-        obj.GetComponent<MeteorProjectile>().Init(startPos, mousePos, skill.skillDamage, skill.skillSpeed, skill.skillTime);
+        obj.GetComponent<MeteorProjectile>().Init(startPos, skill, finalDamage);
     }
     void SpawnRisingVine(Skill skill)
     {
@@ -140,15 +144,14 @@ public class SkillExecutor : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
         Vector2 baseDirection = (mousePos - transform.position).normalized;
-
+        float finalDamage = playerStats.CalculateDamage(skill);
         for (int i = 0; i < leafCount; i++)
         {
             float yOffset = 0;
             yOffset = (i % 2) * 0.2f;
             Vector3 spawnPos = transform.position + new Vector3(0, yOffset, 0);
-
             var obj = Instantiate(leafStormPrefab, spawnPos, Quaternion.identity);
-            obj.GetComponent<LeafStormProjectile>().Init(baseDirection, skill.skillDamage, skill.skillSpeed, skill.skillTime);
+            obj.GetComponent<LeafStormProjectile>().Init(baseDirection, skill, finalDamage);
 
             // 다음 잎까지 대기
             yield return new WaitForSeconds(leafInterval);
@@ -156,6 +159,7 @@ public class SkillExecutor : MonoBehaviour
     }
     private IEnumerator SpawnIcicleShot(Skill skill)
     {
+        float finalDamage = playerStats.CalculateDamage(skill);
         // 마우스 방향 계산 (파이어볼과 동일)
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
@@ -168,15 +172,15 @@ public class SkillExecutor : MonoBehaviour
             Vector3 spawnPos = transform.position + new Vector3(0, yOffset, 0);
 
             var obj = Instantiate(icicleShotPrefab, spawnPos, Quaternion.identity);
-            obj.GetComponent<IcicleShotProjectile>().Init(baseDirection, skill.skillDamage, skill.skillSpeed, skill.skillTime);
+            obj.GetComponent<IcicleShotProjectile>().Init(baseDirection, skill, finalDamage);
 
             // 다음 잎까지 대기
             yield return new WaitForSeconds(leafInterval);
         }
     }
 
-    private void FrozenWalker(Skill skill)
+    void FrozenWalker(Skill skill)
     {
-        
+        elementWalkerSkill.Init(skill);
     }
 }

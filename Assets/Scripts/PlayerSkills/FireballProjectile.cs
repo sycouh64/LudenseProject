@@ -1,18 +1,19 @@
 using UnityEngine;
+using static SkillList;
 
 public class FireballProjectile : DisposableProjectile
 {
     
-    public void Init(Vector2 dir, float dmg, float speed, float time) // SkillExecutor 에서 실행함
+    public override void Init(Vector2 dir, Skill skill, float finalDmg)
     {
-        direction = dir.normalized; // 벡터 정규화
-        damage = dmg;
-        projectileSpeed = speed;
-        skillDestroyTime = time;
-        // 방향 벡터를 각도로 변환해서 오브젝트 회전
+        finalDmg = finalDamage;
+        direction = dir.normalized;
+        damage = skill.skillDamage;
+        projectileSpeed = skill.skillSpeed;
+        skillDestroyTime = skill.skillTime;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        anim.SetInteger("fire", 1); // 애니메이션 실행
+        anim.SetInteger("fire", 1); 
     }
 
     void Update()

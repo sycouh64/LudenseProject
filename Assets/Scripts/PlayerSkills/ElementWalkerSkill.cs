@@ -4,27 +4,25 @@ using System.Collections;
 using static UnityEngine.GraphicsBuffer;
 using static SkillEnergyManager;
 using static SkillList;
-
+using static PlayerStats;
 public  class ElementWalkerSkill : MonoBehaviour
 {
     [SerializeField] protected float walkerSpeed;
     [SerializeField] protected float damage;
-    [SerializeField] protected string skillElement;
+    [SerializeField] protected SkillElement skillElement;
     [SerializeField] protected float skillDestroyTime;
-    protected bool usingWalkerSkill = false;
+    protected static bool usingWalkerSkill = false;
+    protected PlayerStats playerStats;
+    StatModifier walkerModifier = new StatModifier(0, ModifierType.Flat, 0, "null", 0);
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Update()
-    {
-        
-    }
+
+
     public IEnumerator Init(Skill skill) // SkillExecutor 에서 실행함
     {
         usingWalkerSkill = true;
-        damage = skill.skillDamage;
-        walkerSpeed = skill.skillSpeed;
-        skillDestroyTime = skill.skillTime;
-        skillElement = skill.skillElement;
-
+        Debug.Log("신발장착");
+        walkerModifier = new StatModifier(skill.skillDamage, ModifierType.Flat, 0, skill.skillName, skill.SkillElement);
+        playerStats.AddModifier(walkerModifier);
         while (usingWalkerSkill == true)
         {
             UseEnergy(skill);

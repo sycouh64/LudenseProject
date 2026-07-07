@@ -1,15 +1,17 @@
 using UnityEngine;
+using static SkillList;
 
 public class IcicleShotProjectile : DisposableProjectile
 {
     // 파이어볼 발사 및 애니메이션 구현 스크립트
 
-    public void Init(Vector2 dir, float dmg, float speed, float time) // SkillExecutor 에서 실행함
+    public override void Init(Vector2 dir, Skill skill, float finalDmg) // SkillExecutor 에서 실행함
     {
+        finalDmg = finalDamage;
         direction = dir.normalized; // 벡터 정규화
-        damage = dmg;
-        projectileSpeed = speed;
-        skillDestroyTime = time;
+        damage = skill.skillDamage;
+        projectileSpeed = skill.skillSpeed;
+        skillDestroyTime = skill.skillTime;
         // 방향 벡터를 각도로 변환해서 오브젝트 회전
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);

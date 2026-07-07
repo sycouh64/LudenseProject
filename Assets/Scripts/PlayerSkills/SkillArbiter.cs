@@ -70,7 +70,6 @@ public class SkillArbiter : MonoBehaviour
         switch (PlayerElementManager_Instance.playerCurrentElement)
         {
             case PlayerElement.Red:
-                Debug.Log(12345);
                 Debug.Log(redSkillSlot[num]);
                 SkillCast(redSkillSlot[num]);
                 break;
@@ -84,21 +83,21 @@ public class SkillArbiter : MonoBehaviour
     }
     public bool SkillCostCaculater(Skill skill)
     {
-        switch (skill.skillElement)
+        switch (skill.SkillElement)
         {
-            case "red":
+            case SkillElement.Red:
                 if (SkillEnergyManager_Instance.redEnergy < skill.skillValue)
                 {
                     return false;
                 }
                 else return true;
-            case "blue":
+            case SkillElement.Blue:
                 if (SkillEnergyManager_Instance.greenEnergy < skill.skillValue)
                 {
                     return false;
                 }
                 else return true;
-            case "green":
+            case SkillElement.Green:
                 if (SkillEnergyManager_Instance.blueEnergy < skill.skillValue)
                 {
                     return false;

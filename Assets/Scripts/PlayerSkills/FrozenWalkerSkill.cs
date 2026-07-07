@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class FrozenWalkerSkill : DisposableProjectile
+public class FrozenWalkerSkill : ElementWalkerSkill
 {
     
 }

@@ -82,5 +82,8 @@ public class PlayerStats : MonoBehaviour
         yield return new WaitForSeconds(modifier.duration);
         modifiers.Remove(modifier);
     }
-
+    public void RemoveModifier(StatModifier modifier)
+    {
+        modifiers.Remove(modifier);
+    }
 }

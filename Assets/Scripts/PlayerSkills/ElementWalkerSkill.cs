@@ -14,7 +14,6 @@ public class ElementWalkerSkill : MonoBehaviour
     protected static bool usingWalkerSkill = false;
     static StatModifier walkerModifier = null;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public void Init(Skill skill) // SkillExecutor 에서 실행함
     {

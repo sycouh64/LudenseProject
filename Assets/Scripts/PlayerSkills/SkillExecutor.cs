@@ -34,27 +34,26 @@ public class SkillExecutor : MonoBehaviour
     // 유니티 초기화 함수
     private void Awake()
     {
-        // 만약 씬에 실수로 GameManager를 여러 개 배치했다면, 중복된 것은 파괴한다.
-        if (SkillExecutor_Instance == null)
+        if (_Instance != null && _Instance != this)
         {
-            _Instance = this;
-
-            // 씬이 바뀌어도 이 오브젝트가 파괴되지 않고 유지되도록 설정
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (SkillExecutor_Instance != this)
-        {
+            // 이미 인스턴스가 존재하면 자신을 파괴
             Destroy(gameObject);
+            return;
         }
 
-        ElementWalkerSkill elementWalkerSkill = GetComponent<ElementWalkerSkill>();
+        _Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     [SerializeField] GameObject fireballPrefab; // 프리팹 연결
     [SerializeField] GameObject risingVinePrefab;
     [SerializeField] GameObject icicleShotPrefab;
     [SerializeField] GameObject leafStormPrefab;
+    [SerializeField] GameObject FireFieldPrefab;
+    [SerializeField] GameObject PoisonFieldPrefab;
+    [SerializeField] GameObject FrozenFieldPrefab;
     [SerializeField] ElementWalkerSkill elementWalkerSkill;
+
 
     private int leafCount = 3; // 잎 개수
     private float leafInterval = 0.1f; // 잎 간의 시간 텀 (초)
@@ -82,16 +81,25 @@ public class SkillExecutor : MonoBehaviour
                 StartCoroutine(SpawnLeafStorm(skill));
                 break;
             case "불의걸음":
-                Debug.Log("불의걸음사용!!!!!!");
                 FireWalker(skill);
                 break;
             case "자연의걸음":
-                Debug.Log("자연의걸음사용!!!!!!");
                 NatureWalker(skill);
                 break;
             case "차가운걸음":
-                Debug.Log("차가운걸음사용!!!!!!");
                 FrozenWalker(skill);
+                break;
+            case "불바다":
+                Debug.Log("불바다사용!!!!!!");
+                SpawnFireField(skill);
+                break;
+            case "독무":
+                Debug.Log("독무사용!!!!!!");
+                SpawnPoisonField(skill);
+                break;
+            case "블리자드":
+                Debug.Log("블리자드사용!!!!!!");
+                SpawnFrozenField(skill);
                 break;
         }
     }
@@ -190,7 +198,6 @@ public class SkillExecutor : MonoBehaviour
     }
     void FireWalker(Skill skill)
     {
-        Debug.Log("불불");
         elementWalkerSkill.Init(skill);
     }
     void NatureWalker(Skill skill)
@@ -200,5 +207,67 @@ public class SkillExecutor : MonoBehaviour
     void FrozenWalker(Skill skill)
     {
         elementWalkerSkill.Init(skill);
+    }
+
+    void SpawnFireField(Skill skill)
+    {
+        Debug.Log("불바다스킬사용");
+        // 마우스 X좌표를 월드 좌표로 변환
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        // 바닥 Y좌표 찾기 — Raycast로 바닥 감지
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(mousePos.x, mousePos.y),
+            Vector2.down,
+            100f,
+            LayerMask.GetMask("Ground")
+        );
+
+        if (hit.collider != null)
+        {
+            Vector3 spawnPos = new Vector3(mousePos.x, hit.point.y, 0);
+            var obj = Instantiate(FireFieldPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+    void SpawnPoisonField(Skill skill)
+    {
+        // 마우스 X좌표를 월드 좌표로 변환
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        // 바닥 Y좌표 찾기 — Raycast로 바닥 감지
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(mousePos.x, mousePos.y),
+            Vector2.down,
+            100f,
+            LayerMask.GetMask("Ground")
+        );
+
+        if (hit.collider != null)
+        {
+            Vector3 spawnPos = new Vector3(mousePos.x, hit.point.y, 0);
+            var obj = Instantiate(PoisonFieldPrefab, spawnPos, Quaternion.identity);
+        }
+    }
+    void SpawnFrozenField(Skill skill)
+    {
+        // 마우스 X좌표를 월드 좌표로 변환
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        // 바닥 Y좌표 찾기 — Raycast로 바닥 감지
+        RaycastHit2D hit = Physics2D.Raycast(
+            new Vector2(mousePos.x, mousePos.y),
+            Vector2.down,
+            100f,
+            LayerMask.GetMask("Ground")
+        );
+
+        if (hit.collider != null)
+        {
+            Vector3 spawnPos = new Vector3(mousePos.x, hit.point.y, 0);
+            var obj = Instantiate(FrozenFieldPrefab, spawnPos, Quaternion.identity);
+        }
     }
 }

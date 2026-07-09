@@ -31,37 +31,37 @@ public class SkillSlotAllocater : MonoBehaviour
     }
 
     // 유니티 초기화 함수
+
     private void Awake()
     {
-        // 만약 씬에 실수로 GameManager를 여러 개 배치했다면, 중복된 것은 파괴한다.
-        if (_Instance == null)
+        if (_Instance != null && _Instance != this)
         {
-            _Instance = this;
-
-            // 씬이 바뀌어도 이 오브젝트가 파괴되지 않고 유지되도록 설정
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (_Instance != this)
-        {
+            // 이미 인스턴스가 존재하면 자신을 파괴
             Destroy(gameObject);
+            return;
         }
-        
+
+        _Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         // 스킬 슬롯 스킬 할당 코드
         //redSkill
         redSkillSlot[0] = skillList[0];
         redSkillSlot[1] = skillList[1];
         redSkillSlot[2] = skillList[5];
+        redSkillSlot[3] = skillList[8];
         //greenSkill
         greenSkillSlot[0] = skillList[2];
         greenSkillSlot[1] = skillList[3];
         greenSkillSlot[2] = skillList[6];
+        greenSkillSlot[3] = skillList[9];
         //blueSkill
         blueSkillSlot[0] = skillList[4];
         blueSkillSlot[1] = skillList[7];
+        blueSkillSlot[2] = skillList[10];
     }
-
-    public static Skill[] redSkillSlot = new Skill[3];
-    public static Skill[] greenSkillSlot = new Skill[3];
-    public static Skill[] blueSkillSlot = new Skill[3];
+    public static Skill[] redSkillSlot = new Skill[4];
+    public static Skill[] greenSkillSlot = new Skill[4];
+    public static Skill[] blueSkillSlot = new Skill[4];
 
 }

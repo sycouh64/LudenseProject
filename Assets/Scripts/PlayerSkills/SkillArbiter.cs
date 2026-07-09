@@ -35,18 +35,15 @@ public class SkillArbiter : MonoBehaviour
     // 유니티 초기화 함수
     private void Awake()
     {
-        // 만약 씬에 실수로 GameManager를 여러 개 배치했다면, 중복된 것은 파괴한다.
-        if (SkillArbiter_Instance == null)
+        if (_Instance != null && _Instance != this)
         {
-            _Instance = this;
-
-            // 씬이 바뀌어도 이 오브젝트가 파괴되지 않고 유지되도록 설정
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (SkillArbiter_Instance != this)
-        {
+            // 이미 인스턴스가 존재하면 자신을 파괴
             Destroy(gameObject);
+            return;
         }
+
+        _Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
 

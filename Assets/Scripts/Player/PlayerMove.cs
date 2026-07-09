@@ -7,7 +7,7 @@ using static PlayerWallCheck;
 public class PlayerMove : MonoBehaviour
 {
     // 플레이어 움직임 구현
-    public float xMoveSpeed = 5f;
+    public float xMoveSpeed = 10;
     public float yMoveSpeed = 3f;
 
     public float jumpPower = 20f;
@@ -21,6 +21,7 @@ public class PlayerMove : MonoBehaviour
     public bool jumpPressed;
     void Awake()
     {
+        
         direction = 1;
         rb = GetComponent<Rigidbody2D>();
         originalGravity = rb.gravityScale;
@@ -28,7 +29,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-
+        // xMoveSpeed = PlayerHealth.currentSpeed;
         if (isWall == true) // 벽타기 구현
         {
             NoGravity();

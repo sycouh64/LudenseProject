@@ -56,6 +56,9 @@ public class SkillList : MonoBehaviour
         new FireWallker(),
         new NatureWalker(),
         new FrozenWalker(),
+        new FireField(),
+        new PoisonField(),
+        new FrozenField()
     };
 
     public class FireBall : Skill
@@ -93,5 +96,18 @@ public class SkillList : MonoBehaviour
     {
         public FrozenWalker() : base("차가운걸음", SkillElement.Blue, SkillType.Utility, 100, 1, 20, 5) { }
     }
-    
+
+    public class FireField : Skill
+    {
+        public FireField() : base("불바다", SkillElement.Red, SkillType.CC, 0, 30, 10, 5) { }
+    }
+    public class PoisonField : Skill
+    {
+        public PoisonField() : base("독무", SkillElement.Green, SkillType.CC, 0, 30, 10, 5) { }
+    }
+    public class FrozenField : Skill
+    {
+        public FrozenField() : base("블리자드", SkillElement.Blue, SkillType.CC, 0, 30, 10, 5) { }
+    }
+
 }

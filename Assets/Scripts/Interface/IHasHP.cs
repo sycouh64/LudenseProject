@@ -4,4 +4,8 @@ public interface IHasHP
 {
     float CurrentHP { get; }
     float MaxHP { get; }
+
+    float OriginalSpeed { get; }
+
+    float CurrentSpeed {  get; }
 }

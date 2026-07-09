@@ -32,6 +32,10 @@ public class InputManager : MonoBehaviour
     {
         SkillArbiter_Instance.SkillDecider(2);
     }
+    public void OnSkill_4(InputValue value)
+    {
+        SkillArbiter_Instance.SkillDecider(3);
+    }
 
     public void OnEnemy(InputValue value)
     {

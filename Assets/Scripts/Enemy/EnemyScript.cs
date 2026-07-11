@@ -40,11 +40,12 @@ public abstract class EnemyScript : MonoBehaviour, IDamageable
         float finalDamage = damage;
         if (activeDebuffs.Contains(DebuffType.Frozen))
         {
-            finalDamage += 10;
+            Debug.Log("빙결디버프터짐");
+            finalDamage += 100;
             RemoveDebuff(DebuffType.Frozen);
         }
         // 빙결디버프일 경우 10의 추가 데미지를 입음
-        currentHP -= damage;
+        currentHP -= finalDamage;
 
         if (currentHP <= 0)
         {

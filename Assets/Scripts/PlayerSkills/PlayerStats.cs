@@ -41,10 +41,11 @@ public class PlayerStats : MonoBehaviour
 
         _Instance = this;
         DontDestroyOnLoad(gameObject);
+
     }
 
 
-    public float baseAttack = 10f;
+    private float baseAttack = 0;
 
     public static List<StatModifier> modifiers = new List<StatModifier>();
     // 버프/디버프 추가
@@ -58,7 +59,10 @@ public class PlayerStats : MonoBehaviour
     // 최종 데미지 계산
     public float CalculateDamage(SkillList.Skill skill)
     {
-        
+        foreach (var modifier in modifiers)
+        {
+            Debug.Log($"value: {modifier.value} | Element: {modifier.Element} | Type: {modifier.type} | Duration: {modifier.duration}");
+        }
         float total = baseAttack + skill.skillDamage;
         var applicableModifiers = modifiers.Where(m =>
             m.Element == skill.SkillElement || 

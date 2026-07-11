@@ -10,7 +10,7 @@ public class FireballProjectile : DisposableProjectile
 
     protected override void OnFire()
     {
-        anim.Play("FireballAnim");
+        anim.SetInteger("fire", 1);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }

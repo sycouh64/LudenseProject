@@ -28,7 +28,6 @@ public class EnemyDebuff : MonoBehaviour
 
     private void PoisonDebuffApply()
     {
-        Debug.Log("독적용");
         foreach (var target in poisonDebuffEnemyList.ToList())
         {
             float poisonDamage = 10;
@@ -43,7 +42,6 @@ public class EnemyDebuff : MonoBehaviour
     }
     private void BurnDebuffApply()
     {
-        Debug.Log("화상적용");
         foreach (var target in burnDebuffEnemyList.ToList())
         {
             // 10의 화염 데미지
@@ -57,7 +55,6 @@ public class EnemyDebuff : MonoBehaviour
     }
     private void FrozenDebuffApply()
     {
-        Debug.Log("빙결적용");
         foreach (var target in frozenDebuffEnemyList.ToList())
         {
             // 현재이속의 50% 감소
@@ -69,10 +66,4 @@ public class EnemyDebuff : MonoBehaviour
                 frozenDebuffEnemyList.Remove(target);
         }
     }
-}
-public enum DebuffType
-{
-    Poison,
-    Burn,
-    Frozen
 }

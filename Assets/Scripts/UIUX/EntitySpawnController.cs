@@ -7,7 +7,6 @@ public class EntitySpawnController : MonoBehaviour
     private EnemySpawnManager enemySpawnManager;
     void Start()
     {
-        Debug.Log(1);
         enemySpawnManager = GetComponent<EnemySpawnManager>();
         enemy_1 = new Enemy_1(enemySpawnManager);
 

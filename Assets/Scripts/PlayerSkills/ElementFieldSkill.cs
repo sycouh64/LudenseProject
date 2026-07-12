@@ -6,32 +6,32 @@ using System.Linq;
 
 public abstract class ElementFieldSkill : MonoBehaviour
 {
-    [SerializeField] protected float projectileSpeed; // 값 받아오기
+    protected float projectileSpeed; // 값 받아오기
     protected float interval = 1;
     [SerializeField] protected Animator anim;
-    [SerializeField] protected float skillDestroyTime = 5;
+    protected float skillDestroyTime = 5;
 
 
     [SerializeField] protected DebuffType debuffType;
 
-    private List<IDamageable> targetsInField = new List<IDamageable>();
+    private List<EnemyScript> targetsInField = new List<EnemyScript>();
 
 
     // Update is called once per frame
     protected void Awake()
     {
+        StartCoroutine(TickDebuffApply());
         anim = GetComponent<Animator>();
         Destroy(gameObject, skillDestroyTime);
     }
 
-
-
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out var target))
+        if (other.TryGetComponent<EnemyScript>(out var target))
         {
             Debug.Log("적이닿음");
-            target.AddDebuff(debuffType);
+            target.AddDebuff(debuffType, 5);
+            targetsInField.Add(target);
             OnEnemyEnterField(other);
         }
         if (other.CompareTag("Player"))
@@ -41,9 +41,8 @@ public abstract class ElementFieldSkill : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out var target))
+        if (other.TryGetComponent<EnemyScript>(out var target))
         {
-            target.RemoveDebuff(debuffType);
             OnEnemyExitField(other);
         }
 
@@ -53,15 +52,18 @@ public abstract class ElementFieldSkill : MonoBehaviour
             OnPlayerExitField();
         }
     }
-    void OnDestroy()
+
+    private IEnumerator TickDebuffApply()
     {
-        // 장판이 사라질 때 범위 안에 남아있는 적 디버프 제거
-        foreach (var target in targetsInField.ToList())
+        while (true) 
         {
-            target.RemoveDebuff(debuffType);
+            foreach (var target in targetsInField.ToList())
+            {
+                target.AddDebuff(debuffType, 5);
+            }
+            yield return new WaitForSeconds(1);
         }
     }
-
     protected void OnEnemyEnterField(Collider2D other) { }
     protected void OnEnemyExitField(Collider2D other) { }
     protected void OnPlayerEnterField() { }

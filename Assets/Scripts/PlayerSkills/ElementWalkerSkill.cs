@@ -20,7 +20,6 @@ public class ElementWalkerSkill : MonoBehaviour
         if (walkerModifier != null && walkerModifier.Element == skill.SkillElement)
         {
             RemoveCurrentModifier();
-            Debug.Log(usingWalkerSkill);
             usingWalkerSkill = false;
             return;
         }
@@ -28,8 +27,6 @@ public class ElementWalkerSkill : MonoBehaviour
         StopAllCoroutines();
 
         usingWalkerSkill = true;
-        Debug.Log(skill.skillName);
-        Debug.Log("신발장착");
         walkerModifier = new StatModifier(skill.skillDamage, ModifierType.Flat, 0, skill.skillName, skill.SkillElement);
         PlayerStats_Instance.AddModifier(walkerModifier);
         StartCoroutine(UseEnergy(skill));

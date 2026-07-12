@@ -25,7 +25,7 @@ public abstract class DisposableProjectile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent<IDamageable>(out var target))
+        if (other.TryGetComponent<EnemyScript>(out var target))
         {
             Debug.Log(finalDamage);
             target.TakeDamage(finalDamage);

@@ -113,7 +113,6 @@ public class SkillExecutor : MonoBehaviour
 
         // 캐릭터 → 마우스 방향 벡터 계산
         Vector2 direction = (mousePos - transform.position).normalized;
-        Debug.Log(finalDamage);
         // 파이어볼 생성
         var obj = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
         obj.GetComponent<FireballProjectile>().Init(direction, skill, finalDamage); // 파이어볼 스크립트의 Init 호출
@@ -162,7 +161,6 @@ public class SkillExecutor : MonoBehaviour
         mousePos.z = 0;
         Vector2 baseDirection = (mousePos - transform.position).normalized;
         float finalDamage = PlayerStats_Instance.CalculateDamage(skill);
-        Debug.Log(finalDamage);
         for (int i = 0; i < leafCount; i++)
         {
             float yOffset = 0;

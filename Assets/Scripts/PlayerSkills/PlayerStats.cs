@@ -59,10 +59,6 @@ public class PlayerStats : MonoBehaviour
     // 최종 데미지 계산
     public float CalculateDamage(SkillList.Skill skill)
     {
-        foreach (var modifier in modifiers)
-        {
-            Debug.Log($"value: {modifier.value} | Element: {modifier.Element} | Type: {modifier.type} | Duration: {modifier.duration}");
-        }
         float total = baseAttack + skill.skillDamage;
         var applicableModifiers = modifiers.Where(m =>
             m.Element == skill.SkillElement || 

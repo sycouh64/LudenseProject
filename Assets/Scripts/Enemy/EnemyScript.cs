@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections;
 
 
-public abstract class EnemyScript : MonoBehaviour, IDamageable
+public abstract class EnemyScript : MonoBehaviour, IHasHP
 {
     [SerializeField] public float originalSpeed = 10f;
     [SerializeField] public float currentSpeed;
@@ -13,17 +13,14 @@ public abstract class EnemyScript : MonoBehaviour, IDamageable
 
 
     [SerializeField] private float maxHP = 100f;
-    private float currentHP = 100f;
-    private List<DebuffType> activeDebuffs = new List<DebuffType>();
+    public float currentHP = 100f;
 
     public float OriginalSpeed => originalSpeed;
     public float CurrentSpeed => currentSpeed;
     public float CurrentHP => currentHP;
     public float MaxHP => maxHP;
-    public bool IsDead => currentHP <= 0;
 
     private Animator anim;
-
     void Awake()
     {
         anim = GetComponent<Animator>();
@@ -37,15 +34,14 @@ public abstract class EnemyScript : MonoBehaviour, IDamageable
 
     public virtual void TakeDamage(float damage)
     {
-        float finalDamage = damage;
-        if (activeDebuffs.Contains(DebuffType.Frozen))
+        // 빙결 체크 — 중복 진입 방지
+        if (GetComponent<FrozenDebuff>() != null)
         {
             Debug.Log("빙결디버프터짐");
-            finalDamage += 100;
-            RemoveDebuff(DebuffType.Frozen);
+            GetComponent<FrozenDebuff>().FrozenBreak();
+            Destroy(GetComponent<FrozenDebuff>());
         }
-        // 빙결디버프일 경우 10의 추가 데미지를 입음
-        currentHP -= finalDamage;
+        currentHP -= damage;
 
         if (currentHP <= 0)
         {
@@ -55,37 +51,34 @@ public abstract class EnemyScript : MonoBehaviour, IDamageable
         if (anim != null)
             anim.SetInteger("damaged", 1);
     }
-    public virtual IEnumerator GetFrozenDebuff(float slowSpeed)
+
+
+    public void AddDebuff(DebuffType type, float duration)
     {
-        currentSpeed -= slowSpeed;
-        yield return new WaitForSeconds(3);
-        currentSpeed += slowSpeed;
-    }
-    public virtual void AddDebuff(DebuffType debuff)
-    {
-        if (!activeDebuffs.Contains(debuff))
+        switch (type)
         {
-            Debug.Log("디버프적용됨");
-            activeDebuffs.Add(debuff);
-            GetDebuffList(debuff)?.Add(this);    // 해당 디버프 리스트에 자동 추가
+            case DebuffType.Poison:
+                if (GetComponent<PoisonDebuff>() == null)
+                {
+                    gameObject.AddComponent<PoisonDebuff>().Init(this, duration);
+                } else GetComponent<PoisonDebuff>().duration += 1;
+                break;
+            case DebuffType.Burn:
+                if (GetComponent<BurnDebuff>() == null)
+                {
+                    gameObject.AddComponent<BurnDebuff>().Init(this, duration);
+                } else GetComponent<BurnDebuff>().duration += 1;
+                break;
+            case DebuffType.Frozen:
+                if (GetComponent<FrozenDebuff>() == null)
+                {
+                    gameObject.AddComponent<FrozenDebuff>().Init(this, duration);
+                } else GetComponent<FrozenDebuff>().duration += 1;   
+                break;
         }
     }
-    public virtual void RemoveDebuff(DebuffType debuff)
-    {
-        activeDebuffs.Remove(debuff);
-        GetDebuffList(debuff)?.Remove(this);     // 해당 디버프 리스트에서 자동 제거
-    }
 
-    protected virtual List<IDamageable> GetDebuffList(DebuffType debuff)
-    {
-        return debuff switch
-        {
-            DebuffType.Poison => EnemyDebuff.poisonDebuffEnemyList,
-            DebuffType.Burn => EnemyDebuff.burnDebuffEnemyList,
-            DebuffType.Frozen => EnemyDebuff.frozenDebuffEnemyList,
-            _ => null
-        };
-    }
+   
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.CompareTag("Player"))
@@ -99,10 +92,6 @@ public abstract class EnemyScript : MonoBehaviour, IDamageable
     }
     protected virtual void Die()
     {
-        // 죽을 때 모든 디버프 리스트에서 자동 제거
-        foreach (var debuff in activeDebuffs.ToList())
-            RemoveDebuff(debuff);
-
         Destroy(gameObject);
     }
 

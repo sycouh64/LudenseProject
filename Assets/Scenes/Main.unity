@@ -1737,63 +1737,6 @@ MonoBehaviour:
   damage: 0
   skillElement: 0
   skillDestroyTime: 0
---- !u!1001 &1319771679
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2434806321237740901, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_Name
-      value: "\uB3C5\uBB34"
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.66249704
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.1083071
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -16.364582
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8173138480580705683, guid: 944944464fde5a445b758c755372bb40, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 944944464fde5a445b758c755372bb40, type: 3}
 --- !u!1 &1540133191
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,6 +1749,8 @@ GameObject:
   - component: {fileID: 1540133193}
   - component: {fileID: 1540133194}
   - component: {fileID: 1540133195}
+  - component: {fileID: 1540133198}
+  - component: {fileID: 1540133197}
   - component: {fileID: 1540133196}
   m_Layer: 0
   m_Name: GameObject
@@ -1875,9 +1820,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1540133191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d1ec835ef088d43b34f3051523dbca, type: 3}
+  m_Script: {fileID: 11500000, guid: 41afbf75f5d521a418f2d12161e0a144, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDebuff
+  m_EditorClassIdentifier: Assembly-CSharp::BurnDebuff
+  duration: 0
+--- !u!114 &1540133197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540133191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d94eb2208d6dd4bb2f5402cc9ff293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoisonDebuff
+  duration: 0
+--- !u!114 &1540133198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1540133191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba300c3e21160004db76111a2e6d6959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FrozenDebuff
+  duration: 0
 --- !u!1 &1549122339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,4 +2334,3 @@ SceneRoots:
   - {fileID: 2029133835}
   - {fileID: 693479766}
   - {fileID: 1540133192}
-  - {fileID: 1319771679}

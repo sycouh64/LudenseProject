@@ -76,7 +76,7 @@ public class SkillArbiter : MonoBehaviour
                 break;
         }
     }
-    public bool SkillCostCaculater(Skill skill)
+    public bool SkillCostCaculater(Skill skill) // 에너지보다 스킬 코스트가 작을 때 스킬 사용 (true 리턴)
     {
         switch (skill.SkillElement)
         {

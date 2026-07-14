@@ -64,4 +64,10 @@ public class InputManager : MonoBehaviour
             tabIndex = 0;
         }
     }
+
+
+    //public void OnMap(InputValue value)
+    //{ 
+
+    //}
 }

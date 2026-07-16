@@ -2,4 +2,5 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="io.realvirtual.mcp.editor.csproj" />
   <Project Path="io.realvirtual.mcp.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>

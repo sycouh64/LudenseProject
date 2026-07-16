@@ -18,6 +18,9 @@ public class InputManager : MonoBehaviour
     private List<Action> tabActionList;
     private int tabIndex = 0;
 
+    [Header("맵")]
+    [SerializeField] private GameObject mapPanel; // M키로 토글할 맵 UI
+
 
     void Start()
     {
@@ -66,8 +69,11 @@ public class InputManager : MonoBehaviour
     }
 
 
-    //public void OnMap(InputValue value)
-    //{ 
+    public void OnMap(InputValue value)
+    {
+        if (!value.isPressed) return;
+        if (mapPanel == null) return;
 
-    //}
+        mapPanel.SetActive(!mapPanel.activeSelf);
+    }
 }
